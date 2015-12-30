@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from viewer.models import Maps
+from django.views.decorators.csrf import ensure_csrf_cookie
 import os
 
 
@@ -25,11 +26,13 @@ def getLayer(request, img_id):
     return render(request, 'layouts/layer_item.html',val_dict)
 
 
+@ensure_csrf_cookie
 def getGeoThumbs(request):
     '''
     get all images inside lat lngs area
     '''
     pass
+    # tasks = request.POST.getlist('lenlat[]')
     # params = request.POST.getlist('lng_lat[]')
     # maps = Maps.objects.all()
     # img_id = 1
