@@ -25,6 +25,7 @@ router.register(r'my_maps', views.MyMapsViewSet)
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', views.index, name='home'),
+    url(r'^mapProfile/(?P<map_id>[-\w]+)/$' , views.map_detail, name='map_detail'),
     url(r'^getMapById/(?P<img_id>[-\w]+)/$', views.getImage),
     url(r'^getThumbs/(?P<stringToSearch>[-\w.]+)/$', views.getThumbs),
     url(r'^getGeoThumbs/$', views.getGeoThumbs),

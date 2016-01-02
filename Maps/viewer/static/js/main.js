@@ -15,13 +15,13 @@ $(function (){
     $('#thumb').on('click', '.thumbnail-click', function(){
         var imgId = $(this).find('img').data('id');
         var thumbPng = $(this).find('img').attr('src');
+        //var modal = $("<div id='modal' class='demo-card-wide mdl-card mdl-shadow--4dp'style='position: absolute;margin: 0 auto;padding: 5px;top: 50%;left: 50%;transform: translate(-50%, -50%);width: 250px;min-height: 100px;z-index: 10;'><p>Can't load the some image twice.</p><button id='popup-button'>OK</button></div>");
 
         if ($.inArray(imgId, chosenMaps) !== -1){
-            var modal = $("<div id='modal' class='demo-card-wide mdl-card mdl-shadow--4dp'style='position: absolute;margin: 0 auto;padding: 5px;top: 50%;left: 50%;transform: translate(-50%, -50%);width: 250px;min-height: 100px;z-index: 10;'><p>Can't load the some image twice.</p><button id='popup-button'>OK</button></div>");
-
-            $('#map').append(modal);
             return;
         }
+
+        //$('#map').append(modal);
         chosenMaps.push(imgId);
 
         // Add support for right side drawer
@@ -76,7 +76,7 @@ $(function (){
      * ok button pressed
      */
     $('#map').on('click', '#popup-button', function(){
-        $('#modal').remove();
+        $('#modal').hide();
     });
 
 

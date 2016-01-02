@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from viewer.models import Maps
+from django.http import HttpResponse
 from django.views.decorators.csrf import ensure_csrf_cookie
 import os
 
@@ -31,22 +32,22 @@ def getGeoThumbs(request):
     '''
     get all images inside lat lngs area
     '''
-    pass
-    # tasks = request.POST.getlist('lenlat[]')
-    # params = request.POST.getlist('lng_lat[]')
-    # maps = Maps.objects.all()
-    # img_id = 1
-    # map = Maps.objects.filter(id__contains=img_id)
-    #
-    # url = "http://localhost:3000/uploads/{id}/thumb/{thumb_name_ext_stripped}.png"
-    # path = "/uploads/thumb/{thumb_name_ext_stripped}.png"
-    # val_dict = {}
-    #
-    # thumb_file_name, ext = os.path.splitext(map.upload_file_name)
-    #
-    # val_dict['id'] = map.id
-    # val_dict['title'] = map.title
-    #
-    # val_dict['thumb_url'] = url.format(id=map.id,thumb_name_ext_stripped=thumb_file_name)
-    # val_dict['thumb_path'] = path.format(id=map.id, thumb_name_ext_stripped=thumb_file_name)
-    # return render(request, 'layouts/layer_item.html', val_dict)
+    lenlat = request.POST.getlist('lenlat[]')
+    left_down = lenlat[0]
+    left_up = lenlat[1]
+    right_up = lenlat[2]
+    right_down = lenlat[3]
+    maps = Maps.objects.all()
+
+    for map in maps:
+        new_map = map.bbox.split(',')
+        print new_map[0] + "=====" + left_down + "-----"
+        print new_map[1] + "=====" + left_up + "-----"
+        print new_map[2] + "=====" + right_up + "-----"
+        print new_map[3] + "=====" + right_down + "-----"
+        print "xxxxxxxxxxxx"
+
+    # correct_thing = Thing.object.get(name = "Hello")
+    # random: things = Things.object.all().orderby('?')
+
+    return HttpResponse('Success')

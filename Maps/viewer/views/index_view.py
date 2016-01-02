@@ -28,3 +28,9 @@ def getImage(request, img_id):
     }], safe=False)
 
     return response
+
+def map_detail(request, map_id):
+    '''
+    '''
+    map = MyMaps.objects.get(map_id=map_id)
+    return render(request, 'layouts/map_page.html', {'map':map})

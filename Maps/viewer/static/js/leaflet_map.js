@@ -121,19 +121,11 @@ function geoSearch(array) {
     });
     debugger;
     var csrftoken = getCookie('csrftoken');
-    var lenlat = {
-        "left-down": array[0],
-        "left-up": array[1],
-        "right-up": array[2],
-        "right-down":array[3],
-        };
+    var lenlat = [array[0], array[1], array[2], array[3]];
     $.ajax({
             type: 'POST',
             url: '/getGeoThumbs/',
-            data: "{}",
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            //data: {'lenlat[]': lenlat},
+            data: {'lenlat[]': lenlat},
         });
 
     // $.post("getThumbs/" + JSON.stringify())
